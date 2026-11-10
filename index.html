@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unfiltered Advisory | Scale the Operation Behind Your Sales</title>
+    <meta name="description" content="Unfiltered Advisory helps small manufacturers build the people, capacity, process, and operating systems needed to grow without adding corporate noise.">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --ink: #111827;
+            --ink-2: #1f2937;
+            --slate: #4b5563;
+            --muted: #6b7280;
+            --line: #e5e7eb;
+            --soft: #f3f4f6;
+            --paper: #ffffff;
+            --blue: #2563eb;
+            --blue-dark: #1d4ed8;
+            --blue-soft: #dbeafe;
+            --red: #dc2626;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: #f9fafb;
+            color: var(--ink);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button { font: inherit; }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        header {
+            height: 78px;
+            background: rgba(255,255,255,.96);
+            border-bottom: 1px solid var(--line);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-flex {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+        }
+
+        .logo span { color: var(--blue); }
+
+        .btn-primary, .btn-secondary {
+            border: 0;
+            border-radius: 7px;
+            padding: 11px 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .15s ease, background .15s ease, border-color .15s ease;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background: var(--blue);
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            color: #fff;
+            background: transparent;
+            border: 1px solid #4b5563;
+        }
+
+        .btn-secondary:hover {
+            border-color: #9ca3af;
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #111827 55%, #1f2937 100%);
+            color: #fff;
+            padding: 104px 0 92px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        @media (min-width: 960px) {
+            .hero-grid { grid-template-columns: 7fr 5fr; }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: #93c5fd;
+            background: rgba(37,99,235,.14);
+            border: 1px solid rgba(96,165,250,.35);
+            border-radius: 9999px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            font-size: clamp(42px, 6vw, 66px);
+            line-height: 1.02;
+            letter-spacing: -0.045em;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: #9ca3af;
+            font-weight: 500;
+        }
+
+        .hero p {
+            max-width: 680px;
+            color: #d1d5db;
+            font-size: 19px;
+            line-height: 1.65;
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* Growth visual */
+        .growth-panel {
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(255,255,255,.035);
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 20px 50px rgba(0,0,0,.18);
+        }
+
+        .growth-label {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #9ca3af;
+            margin-bottom: 18px;
+        }
+
+        .growth-stack {
+            display: grid;
+            gap: 12px;
+        }
+
+        .growth-row {
+            display: grid;
+            grid-template-columns: 42px 1fr;
+            gap: 14px;
+            align-items: center;
+            padding: 14px;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 8px;
+            background: rgba(0,0,0,.13);
+        }
+
+        .growth-num {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 900;
+            color: #bfdbfe;
+            background: rgba(37,99,235,.18);
+        }
+
+        .growth-row strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .growth-row span {
+            color: #9ca3af;
+            font-size: 12.5px;
+        }
+
+        /* Pivot */
+        .pivot-banner {
+            background: var(--paper);
+            padding: 66px 0;
+            border-bottom: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-bottom: 10px;
+        }
+
+        .pivot-banner h2 {
+            max-width: 920px;
+            margin: 0 auto;
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.17;
+            letter-spacing: -0.03em;
+        }
+
+        .pivot-banner h2 span {
+            color: var(--slate);
+            font-weight: 500;
+        }
+
+        /* Shared section styles */
+        section.content-sec { padding: 92px 0; }
+
+        .section-header {
+            max-width: 760px;
+            margin-bottom: 52px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(31px, 4vw, 42px);
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 13px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            line-height: 1.65;
+            color: var(--slate);
+        }
+
+        /* Pain */
+        .pain-sec { background: var(--soft); }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 760px) {
+            .pain-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .pain-card {
+            display: flex;
+            gap: 15px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            padding: 24px;
+        }
+
+        .pain-indicator {
+            color: var(--red);
+            font-weight: 900;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+
+        .pain-card h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .pain-card p {
+            color: var(--slate);
+            font-size: 14.5px;
+            line-height: 1.55;
+        }
+
+        /* What we fix */
+        .fix-sec { background: #fff; }
+
+        .fix-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 26px;
+        }
+
+        @media (min-width: 820px) {
+            .fix-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .fix-card {
+            border-top: 4px solid var(--ink);
+            background: #f9fafb;
+            border-radius: 0 0 9px 9px;
+            padding: 30px;
+        }
+
+        .fix-card.accent { border-top-color: var(--blue); }
+
+        .fix-card h3 {
+            font-size: 21px;
+            letter-spacing: -.02em;
+            margin-bottom: 8px;
+        }
+
+        .fix-card > p {
+            color: var(--slate);
+            font-size: 14px;
+            line-height: 1.55;
+            margin-bottom: 18px;
+        }
+
+        .fix-card ul {
+            list-style: none;
+            display: grid;
+            gap: 11px;
+        }
+
+        .fix-card li {
+            color: #374151;
+            font-size: 14px;
+            display: flex;
+            gap: 9px;
+        }
+
+        .fix-card li::before {
+            content: "—";
+            color: var(--blue);
+            font-weight: 900;
+        }
+
+        /* Engagements */
+        .engage-sec {
+            background: var(--ink);
+            color: #fff;
+            padding: 84px 0;
+        }
+
+        .engage-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+        }
+
+        @media (min-width: 940px) {
+            .engage-grid { grid-template-columns: 4fr 8fr; }
+        }
+
+        .engage-copy h2 {
+            font-size: 35px;
+            letter-spacing: -.03em;
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+
+        .engage-copy p {
+            color: #9ca3af;
+            line-height: 1.65;
+        }
+
+        .engage-models {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        @media (min-width: 640px) {
+            .engage-models { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .model-box {
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 24px;
+            background: rgba(255,255,255,.025);
+        }
+
+        .model-box h3 {
+            color: #93c5fd;
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        .model-box p {
+            color: #d1d5db;
+            font-size: 13.5px;
+            line-height: 1.55;
+        }
+
+        /* Founder */
+        .founder-sec {
+            background: var(--soft);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .founder-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        @media (min-width: 930px) {
+            .founder-grid { grid-template-columns: 5fr 7fr; }
+        }
+
+        .founder-copy h2 {
+            font-size: 35px;
+            letter-spacing: -.03em;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .founder-copy p {
+            color: #374151;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .founder-note {
+            border-left: 3px solid var(--blue);
+            padding-left: 16px;
+            color: var(--slate);
+            font-size: 14px;
+        }
+
+        .xp-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .xp-item {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .xp-tag {
+            display: block;
+            color: var(--blue);
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-bottom: 4px;
+        }
+
+        .xp-item h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .xp-item p {
+            color: var(--slate);
+            font-size: 13.5px;
+            line-height: 1.55;
+        }
+
+        /* CTA */
+        .contact-sec {
+            background: #fff;
+            text-align: center;
+            padding: 96px 0;
+        }
+
+        .contact-box {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-box h2 {
+            font-size: clamp(34px, 5vw, 48px);
+            letter-spacing: -.04em;
+            line-height: 1.08;
+            margin-bottom: 17px;
+        }
+
+        .contact-box p {
+            color: var(--slate);
+            font-size: 17px;
+            line-height: 1.65;
+            margin-bottom: 28px;
+        }
+
+        .placeholder-note {
+            margin-top: 14px;
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        footer {
+            background: #0f172a;
+            color: #9ca3af;
+            padding: 28px 0;
+            font-size: 12px;
+        }
+
+        .footer-flex {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 680px) {
+            header { height: 70px; }
+            .nav-flex .btn-primary { display: none; }
+            .hero { padding: 78px 0 70px; }
+            section.content-sec { padding: 72px 0; }
+            .pivot-banner { padding: 52px 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav-flex">
+            <div class="logo">UNFILTERED<span>.</span></div>
+            <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                Let's Talk About Your Operation
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <span class="badge">Operations for Growing Manufacturers</span>
+                    <h1>
+                        Scale the operation behind your sales.
+                        <span>No corporate noise.</span>
+                    </h1>
+                    <p>
+                        Unfiltered Advisory helps small manufacturers build the people, capacity, process,
+                        and operating systems needed to grow without letting operations become the constraint.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                            Talk About Your Operation
+                        </button>
+                        <button class="btn-secondary" onclick="document.getElementById('stuck').scrollIntoView({behavior:'smooth'})">
+                            Where Growth Gets Stuck
+                        </button>
+                    </div>
+                </div>
+
+                <div class="growth-panel">
+                    <div class="growth-label">What scalable operations require</div>
+
+                    <div class="growth-stack">
+                        <div class="growth-row">
+                            <div class="growth-num">01</div>
+                            <div>
+                                <strong>Know the real constraint</strong>
+                                <span>Separate symptoms from the bottleneck actually limiting output.</span>
+                            </div>
+                        </div>
+
+                        <div class="growth-row">
+                            <div class="growth-num">02</div>
+                            <div>
+                                <strong>Build capacity intentionally</strong>
+                                <span>Align staffing, equipment, flow, scheduling, and outsourcing with demand.</span>
+                            </div>
+                        </div>
+
+                        <div class="growth-row">
+                            <div class="growth-num">03</div>
+                            <div>
+                                <strong>Create operating discipline</strong>
+                                <span>Give managers practical systems that survive a busy Tuesday.</span>
+                            </div>
+                        </div>
+
+                        <div class="growth-row">
+                            <div class="growth-num">04</div>
+                            <div>
+                                <strong>Scale without the bureaucracy</strong>
+                                <span>Add what the business needs — not layers of process for process's sake.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pivot-banner">
+            <div class="container">
+                <div class="eyebrow">The growth problem</div>
+                <h2>
+                    Sales can outgrow an operation faster than most owners expect.
+                    <span>The answer is rarely just “hire more people.”</span>
+                </h2>
+            </div>
+        </section>
+
+        <section class="content-sec pain-sec" id="stuck">
+            <div class="container">
+                <div class="section-header">
+                    <div class="eyebrow">Where growth gets stuck</div>
+                    <h2>Growth exposes the weaknesses that lower volume used to hide.</h2>
+                    <p>
+                        The warning signs are usually familiar. The challenge is figuring out which problems
+                        matter, what is actually driving them, and what to fix first.
+                    </p>
+                </div>
+
+                <div class="pain-grid">
+                    <div class="pain-card">
+                        <div class="pain-indicator">!</div>
+                        <div>
+                            <h3>Sales are growing faster than output</h3>
+                            <p>Orders are there, but lead times stretch, backlog grows, and customer experience starts slipping.</p>
+                        </div>
+                    </div>
+
+                    <div class="pain-card">
+                        <div class="pain-indicator">!</div>
+                        <div>
+                            <h3>Overtime has become normal</h3>
+                            <p>The team keeps working harder, but capacity still feels unpredictable and expensive.</p>
+                        </div>
+                    </div>
+
+                    <div class="pain-card">
+                        <div class="pain-indicator">!</div>
+                        <div>
+                            <h3>Managers are trapped in firefighting</h3>
+                            <p>Leaders spend the day chasing issues instead of running the system and developing the team.</p>
+                        </div>
+                    </div>
+
+                    <div class="pain-card">
+                        <div class="pain-indicator">!</div>
+                        <div>
+                            <h3>Adding people is not adding output</h3>
+                            <p>Training, workflow, scheduling, equipment, or process constraints keep new labor from becoming real capacity.</p>
+                        </div>
+                    </div>
+
+                    <div class="pain-card">
+                        <div class="pain-indicator">!</div>
+                        <div>
+                            <h3>Quality drops as volume rises</h3>
+                            <p>Rework and misses increase because the process depends too heavily on tribal knowledge and heroics.</p>
+                        </div>
+                    </div>
+
+                    <div class="pain-card">
+                        <div class="pain-indicator">!</div>
+                        <div>
+                            <h3>Nobody trusts the capacity number</h3>
+                            <p>Scheduling, staffing, and investment decisions become guesswork because the real operating limit is unclear.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-sec fix-sec">
+            <div class="container">
+                <div class="section-header">
+                    <div class="eyebrow">What we fix</div>
+                    <h2>Practical operating systems built around how your business actually runs.</h2>
+                    <p>
+                        The goal is not to import a corporate playbook. It is to build enough structure,
+                        visibility, and discipline for the operation to support the next stage of growth.
+                    </p>
+                </div>
+
+                <div class="fix-grid">
+                    <div class="fix-card accent">
+                        <h3>Capacity & Flow</h3>
+                        <p>Understand where output is really being lost and build a plan around the constraint.</p>
+                        <ul>
+                            <li>Capacity planning and bottleneck analysis</li>
+                            <li>Production flow and scheduling</li>
+                            <li>Labor and equipment utilization</li>
+                            <li>Outsourcing and overflow strategy</li>
+                            <li>Layout and work-in-process reduction</li>
+                        </ul>
+                    </div>
+
+                    <div class="fix-card">
+                        <h3>People & Leadership</h3>
+                        <p>Build managers and teams that can run the operation without constant executive intervention.</p>
+                        <ul>
+                            <li>Frontline management systems</li>
+                            <li>Training and cross-training programs</li>
+                            <li>Roles, ownership, and accountability</li>
+                            <li>Daily management cadence</li>
+                            <li>Performance coaching and problem solving</li>
+                        </ul>
+                    </div>
+
+                    <div class="fix-card">
+                        <h3>Operating Systems</h3>
+                        <p>Create simple tools that make performance visible and keep improvement moving.</p>
+                        <ul>
+                            <li>KPIs and visual management</li>
+                            <li>Standard work and repeatable process</li>
+                            <li>Quality and root-cause systems</li>
+                            <li>Automation and workflow improvement</li>
+                            <li>Growth roadmaps and execution plans</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="engage-sec">
+            <div class="container engage-grid">
+                <div class="engage-copy">
+                    <div class="eyebrow" style="color:#93c5fd;">How we work</div>
+                    <h2>Use the level of support the problem actually needs.</h2>
+                    <p>
+                        Some businesses need a focused assessment. Others need project support or an experienced
+                        operator beside the leadership team for a period of time. The engagement should fit the problem,
+                        not the other way around.
+                    </p>
+                </div>
+
+                <div class="engage-models">
+                    <div class="model-box">
+                        <h3>Operational Assessment</h3>
+                        <p>
+                            A focused look at capacity, flow, staffing, management systems, and the major constraints
+                            limiting growth — followed by a prioritized action plan.
+                        </p>
+                    </div>
+
+                    <div class="model-box">
+                        <h3>Project Support</h3>
+                        <p>
+                            Targeted help implementing a specific change such as capacity expansion, production flow,
+                            training systems, KPI structure, outsourcing, or process redesign.
+                        </p>
+                    </div>
+
+                    <div class="model-box">
+                        <h3>Ongoing Advisory</h3>
+                        <p>
+                            Recurring support for owners and operating leaders who want an experienced outside operator
+                            helping drive execution and challenge assumptions.
+                        </p>
+                    </div>
+
+                    <div class="model-box">
+                        <h3>Growth & Scale Planning</h3>
+                        <p>
+                            Translate sales growth into the people, equipment, systems, space, and operational milestones
+                            required to deliver it reliably.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-sec founder-sec">
+            <div class="container founder-grid">
+                <div class="founder-copy">
+                    <div class="eyebrow">Operator first</div>
+                    <h2>Built from the floor, not the slide deck.</h2>
+                    <p>
+                        Unfiltered Advisory is built around practical operating experience — growing manufacturing
+                        organizations, solving capacity problems, developing leaders, introducing automation, and
+                        building systems that work under real production pressure.
+                    </p>
+                    <p>
+                        The approach is direct: understand the business, find the real constraint, build the right system,
+                        and leave the operation stronger than it was before.
+                    </p>
+                    <div class="founder-note">
+                        No canned transformation program. No bloated presentation deck. No process added just to make the process look sophisticated.
+                    </div>
+                </div>
+
+                <div class="xp-list">
+                    <div class="xp-item">
+                        <span class="xp-tag">Growth</span>
+                        <h3>Scaling production without losing control</h3>
+                        <p>Connecting sales demand to realistic capacity, staffing, equipment, and execution plans.</p>
+                    </div>
+
+                    <div class="xp-item">
+                        <span class="xp-tag">Operations</span>
+                        <h3>Turning firefighting into a management system</h3>
+                        <p>Building daily operating rhythms, accountability, metrics, and escalation paths that managers can actually use.</p>
+                    </div>
+
+                    <div class="xp-item">
+                        <span class="xp-tag">People</span>
+                        <h3>Building bench strength before you need it</h3>
+                        <p>Training, cross-training, frontline leadership, and role clarity that reduce dependence on a few key people.</p>
+                    </div>
+
+                    <div class="xp-item">
+                        <span class="xp-tag">Improvement</span>
+                        <h3>Using technology where it creates real leverage</h3>
+                        <p>Applying automation, workflow redesign, and better information to remove repetitive work and improve decision-making.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-sec" id="contact">
+            <div class="container">
+                <div class="contact-box">
+                    <div class="eyebrow">Start with the operation</div>
+                    <h2>Growing faster than your operation can comfortably handle?</h2>
+                    <p>
+                        Let's talk about where the business is headed, what is getting in the way,
+                        and whether Unfiltered Advisory can help.
+                    </p>
+
+                    <button class="btn-primary" style="padding:14px 28px;font-size:16px;">
+                        Let's Talk About Your Operation
+                    </button>
+                    <div class="placeholder-note">Contact link can be connected when you're ready.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-flex">
+            <div>© 2026 Unfiltered Advisory LLC</div>
+            <div>Operations • Capacity • Leadership • Scale</div>
+        </div>
+    </footer>
+
+</body>
+</html>
