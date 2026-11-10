@@ -128,10 +128,11 @@ def deploy_to_cloudflare(cf_token):
         parts = []
         for h in bucket:
             rel_path, b64_data = files_by_hash[h]
+            mime_type = "text/html" if rel_path.endswith(".html") else "application/octet-stream"
             parts.append(
                 f"--{boundary}\r\n"
-                f'Content-Disposition: form-data; name="{h}"; filename="{h}"\r\n'
-                f"Content-Type: application/octet-stream\r\n\r\n"
+                f'Content-Disposition: form-data; name="{h}"; filename="{rel_path}"\r\n'
+                f"Content-Type: {mime_type}\r\n\r\n"
                 f"{b64_data}\r\n"
             )
         parts.append(f"--{boundary}--\r\n")
