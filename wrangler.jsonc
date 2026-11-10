@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rapid-fog-4df0",
+  "compatibility_date": "2026-09-18",
+  "assets": {
+    "directory": "./"
+  }
+}
