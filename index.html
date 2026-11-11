@@ -356,6 +356,180 @@
             font-weight: 900;
         }
 
+        /* Case Studies */
+        .cases-sec {
+            background: var(--soft);
+            border-top: 1px solid var(--line);
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        @media (min-width: 880px) {
+            .cases-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .case-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-top: 4px solid var(--blue);
+            border-radius: 0 0 10px 10px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+        }
+
+        .case-card.alt {
+            border-top-color: var(--ink);
+        }
+
+        .case-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .case-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--blue);
+            background: var(--blue-soft);
+            padding: 4px 10px;
+            border-radius: 999px;
+        }
+
+        .case-env {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .case-card h3 {
+            font-size: 22px;
+            line-height: 1.22;
+            letter-spacing: -0.025em;
+            margin-bottom: 18px;
+            color: var(--ink);
+        }
+
+        .case-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 22px;
+            padding: 14px;
+            background: #f8fafc;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+        }
+
+        .metric-item strong {
+            display: block;
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--ink);
+            letter-spacing: -0.02em;
+        }
+
+        .metric-item span {
+            display: block;
+            font-size: 11.5px;
+            line-height: 1.35;
+            color: var(--slate);
+            margin-top: 2px;
+        }
+
+        .case-summary {
+            display: grid;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .case-block strong {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--ink-2);
+            margin-bottom: 4px;
+        }
+
+        .case-block p {
+            font-size: 14.5px;
+            line-height: 1.58;
+            color: var(--slate);
+        }
+
+        .case-details {
+            border-top: 1px solid var(--line);
+            padding-top: 16px;
+            margin-top: auto;
+        }
+
+        .case-details summary {
+            list-style: none;
+            cursor: pointer;
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+        }
+
+        .case-details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .case-details summary::after {
+            content: "→";
+            transition: transform .15s ease;
+        }
+
+        .case-details[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        .case-expanded {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--line);
+            display: grid;
+            gap: 12px;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        .case-expanded h4 {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--ink);
+            margin-bottom: 3px;
+        }
+
+        .case-expanded ul {
+            padding-left: 16px;
+            display: grid;
+            gap: 6px;
+        }
+
         /* Engagements */
         .engage-sec {
             background: var(--ink);
@@ -735,6 +909,152 @@
                             <li>Growth roadmaps and execution plans</li>
                         </ul>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-sec cases-sec" id="cases">
+            <div class="container">
+                <div class="section-header">
+                    <div class="eyebrow">Field-tested results</div>
+                    <h2>What solving the real constraint looks like on the floor.</h2>
+                    <p>
+                        Every operation has an official story for why output is stuck — and a real physical or systemic
+                        reason underneath it. Here are two examples of separating symptoms from the root constraint.
+                    </p>
+                </div>
+
+                <div class="cases-grid">
+                    <!-- Case Study 1 -->
+                    <article class="case-card">
+                        <div>
+                            <div class="case-meta">
+                                <span class="case-tag">Crisis De-Bottlenecking</span>
+                                <span class="case-env">High-Volume Heavy Manufacturing</span>
+                            </div>
+                            <h3>Clearing a 50,000-Unit Bottleneck &amp; Fire Marshal Shutdown Order in 14 Days</h3>
+
+                            <div class="case-metrics">
+                                <div class="metric-item">
+                                    <strong>14 Days</strong>
+                                    <span>100% hazard cleared inside deadline</span>
+                                </div>
+                                <div class="metric-item">
+                                    <strong>Zero</strong>
+                                    <span>Production downtime or fines</span>
+                                </div>
+                                <div class="metric-item">
+                                    <strong>12 Nodes</strong>
+                                    <span>Automated sorting logic fixed</span>
+                                </div>
+                            </div>
+
+                            <div class="case-summary">
+                                <div class="case-block">
+                                    <strong>The Situation</strong>
+                                    <p>
+                                        Over 50,000 units piled four stories high between production and the warehouse triggered
+                                        an imminent fire marshal shutdown order. Five senior managers ($1.25M+ in payroll) were
+                                        deadlocked in departmental finger-pointing while the 14-day clock ran down.
+                                    </p>
+                                </div>
+                                <div class="case-block">
+                                    <strong>The Unfiltered Fix</strong>
+                                    <p>
+                                        Routed overflow into the heated executive garage in the middle of a Western New York winter
+                                        to create instant shared urgency, deployed 3PL surge triage, and went straight to floor
+                                        operators — uncovering an unpropagated MES defect code update that was trapping units in
+                                        an endless reject loop across 12 physical sorting points.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <details class="case-details">
+                            <summary>Read Full Case Study</summary>
+                            <div class="case-expanded">
+                                <div>
+                                    <h4>Breaking the Stalemate</h4>
+                                    <ul>
+                                        <li><strong>Realigning Stakes:</strong> Moving intermediate overflow into the heated executive garage turned an abstract warehouse dispute into every leader's immediate daily priority.</li>
+                                        <li><strong>Rapid Surge Triage:</strong> Partnered with 3PL logistics to shuttle and sort inventory off the main floor without throttling primary production lines.</li>
+                                        <li><strong>Listening to the Floor:</strong> Frontline handlers pointed out what ERP dashboards missed — "uncoded" reject units were endlessly looping through diagnostic test stations.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4>Root Cause &amp; Permanent Control</h4>
+                                    <p>
+                                        Engineering had added new defect codes in the upstream MES four weeks earlier, but 12 downstream automated conveyor diverters relied on manual table updates that were never made. Synchronizing all 12 nodes and establishing a closed-loop engineering change protocol permanently stopped the ghost-inventory whirlpool.
+                                    </p>
+                                </div>
+                            </div>
+                        </details>
+                    </article>
+
+                    <!-- Case Study 2 -->
+                    <article class="case-card alt">
+                        <div>
+                            <div class="case-meta">
+                                <span class="case-tag">Workforce Agility &amp; Flow</span>
+                                <span class="case-env">Custom Medical Device Fabrication</span>
+                            </div>
+                            <h3>Eliminating Single-Point Labor Stoppages &amp; Building True Capacity Planning</h3>
+
+                            <div class="case-metrics">
+                                <div class="metric-item">
+                                    <strong>100%</strong>
+                                    <span>Absence-driven line shutdowns eliminated</span>
+                                </div>
+                                <div class="metric-item">
+                                    <strong>3-Deep</strong>
+                                    <span>Primary, backup &amp; apprentice coverage</span>
+                                </div>
+                                <div class="metric-item">
+                                    <strong>Cellular</strong>
+                                    <span>Floor layout rebuilt for flow &amp; training</span>
+                                </div>
+                            </div>
+
+                            <div class="case-summary">
+                                <div class="case-block">
+                                    <strong>The Situation</strong>
+                                    <p>
+                                        In a high-precision custom fabrication lab, a single technician calling out sick or taking PTO
+                                        would halt an entire multi-stage production line. Management only tracked macro "revenue per headcount"
+                                        while partitioned workstations kept critical skills locked in silos.
+                                    </p>
+                                </div>
+                                <div class="case-block">
+                                    <strong>The Unfiltered Fix</strong>
+                                    <p>
+                                        Replaced blunt top-line ratios with station-by-station capacity modeling, consolidated isolated
+                                        benches into collaborative cellular neighborhoods, and built a transparent Skills Matrix tying
+                                        cross-training directly to technician advancement.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <details class="case-details">
+                            <summary>Read Full Case Study</summary>
+                            <div class="case-expanded">
+                                <div>
+                                    <h4>Three Systemic Gaps Fixed</h4>
+                                    <ul>
+                                        <li><strong>Station-Level Capacity Modeling:</strong> Mapped standard labor times against volume projections to establish real workstation headcount, cycle targets, and flex-allocation plans.</li>
+                                        <li><strong>Cellular Floor Reconfiguration:</strong> Brought interdependent processes into visual and physical proximity so peer training and line balancing happened naturally.</li>
+                                        <li><strong>Structured Skills Matrix:</strong> Established a Primary Operator, Certified Secondary Backup, and Active Apprentice at every critical station, tied to clear career progression.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4>Operational Impact</h4>
+                                    <p>
+                                        Eliminated line stoppages from attendance or vacation fluctuations, stabilized on-time delivery without unplanned overtime scrambles, and turned defensive tribal silos into a self-balancing production team.
+                                    </p>
+                                </div>
+                            </div>
+                        </details>
+                    </article>
                 </div>
             </div>
         </section>
